@@ -1,23 +1,36 @@
 {
     "jobs": [
       {
-        "title": "Web Developer",
-        "company": "Company Name",
-        "location": "Location",
-        "description": "Description of the job goes here..."
+        "title": "Frontend Developer",
+        "company": "Acme Corp",
+        "location": "London, UK",
+        "description": "Acme Corp is seeking a frontend developer to help build our e-commerce platform. You will work with our design and development teams to implement new features and optimize the user experience."
       },
       {
-        "title": "Software Engineer",
-        "company": "Company Name",
-        "location": "Location",
-        "description": "Description of the job goes here..."
+        "title": "Full Stack Developer",
+        "company": "Globex Corp",
+        "location": "New York, NY, USA",
+        "description": "Globex Corp is looking for a full stack developer to help build our SaaS platform. You will work with our product and development teams to create new features and maintain existing ones."
       },
       {
-        "title": "Front-end Developer",
-        "company": "Company Name",
-        "location": "Location",
-        "description": "Description of the job goes here..."
+        "title": "DevOps Engineer",
+        "company": "MegaCorp",
+        "location": "Sydney, Australia",
+        "description": "MegaCorp is seeking a DevOps engineer to help manage our cloud infrastructure. You will work with our development and operations teams to ensure the scalability and reliability of our systems."
+      },
+      {
+        "title": "Mobile App Developer",
+        "company": "BigCo",
+        "location": "Tokyo, Japan",
+        "description": "BigCo is looking for a mobile app developer to help build our iOS and Android apps. You will work with our design and development teams to implement new features and optimize the user experience."
+      },
+      {
+        "title": "Backend Developer",
+        "company": "Software Solutions",
+        "location": "Toronto, ON, Canada",
+        "description": "Software Solutions is seeking a backend developer to help build our custom CRM platform. You will work with our development and product teams to create new features and maintain existing ones."
       }
     ]
   }
+  
   
