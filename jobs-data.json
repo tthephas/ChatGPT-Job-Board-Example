@@ -1,0 +1,23 @@
+{
+    "jobs": [
+      {
+        "title": "Web Developer",
+        "company": "Company Name",
+        "location": "Location",
+        "description": "Description of the job goes here..."
+      },
+      {
+        "title": "Software Engineer",
+        "company": "Company Name",
+        "location": "Location",
+        "description": "Description of the job goes here..."
+      },
+      {
+        "title": "Front-end Developer",
+        "company": "Company Name",
+        "location": "Location",
+        "description": "Description of the job goes here..."
+      }
+    ]
+  }
+  
