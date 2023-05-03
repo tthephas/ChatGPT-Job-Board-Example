@@ -52,76 +52,60 @@ fetch("/jobs-data.json")
 })
 .catch(error => console.error(error));
 
-const jobPostForm = document.querySelector('#job-post-form');
+const jobPostForm = document.getElementById("job-post-form");
 
-jobPostForm.addEventListener('submit', function(event) {
-event.preventDefault();
+jobPostForm.addEventListener("submit", (event) => {
+  event.preventDefault();
+  const jobTitle = document.getElementById("job-title").value;
+  const companyName = document.getElementById("company-name").value;
+  const jobLocation = document.getElementById("job-location").value;
+  const jobDescription = document.getElementById("job-description").value;
 
-const jobTitle = document.querySelector('#job-title').value;
-const companyName = document.querySelector('#company-name').value;
-const jobLocation = document.querySelector('#job-location').value;
-const jobDescription = document.querySelector('#job-description').value;
+  const newJobListing = {
+    title: jobTitle,
+    company: companyName,
+    location: jobLocation,
+    description: jobDescription,
+  };
 
-// You can use these values to send a POST request to your server and add the job posting to your database
+  let jobListings = localStorage.getItem("jobListings");
+  if (!jobListings) {
+    jobListings = [];
+  } else {
+    jobListings = JSON.parse(jobListings);
+  }
 
-// Reset the form
-jobPostForm.reset();
+  jobListings.push(newJobListing);
+  localStorage.setItem("jobListings", JSON.stringify(jobListings));
+  alert("Job posted successfully!");
+  window.location.href = "index.html"; // redirect to main job board page
 });
 
-document.getElementById("job-post-form").addEventListener("submit", addJobPosting);
-
-function addJobPosting(event) {
-    // Prevent the default form submit behavior
-    event.preventDefault();
+  // Load job listings from local storage
+function loadJobListings() {
+    let jobListings = localStorage.getItem("jobListings");
+    if (jobListings) {
+      jobListings = JSON.parse(jobListings);
+      const jobListingsContainer = document.getElementById("job-listings");
+      jobListingsContainer.innerHTML = "";
   
-    // Get the form data
-    const jobTitle = document.getElementById("job-title").value;
-    const companyName = document.getElementById("company-name").value;
-    const jobLocation = document.getElementById("job-location").value;
-    const jobDescription = document.getElementById("job-description").value;
-  
-    // Create a new job posting object with the form data
-    const newJobPosting = {
-      title: jobTitle,
-      company: companyName,
-      location: jobLocation,
-      description: jobDescription
-    };
-  
-    // Add the new job posting to the recent job listings array
-    recentJobListings.push(newJobPosting);
-  
-    // Update the HTML with the new job posting
-    updateJobListings();
-  
-    // Clear the form inputs
-    document.getElementById("job-title").value = "";
-    document.getElementById("company-name").value = "";
-    document.getElementById("job-location").value = "";
-    document.getElementById("job-description").value = "";
-  }
-
-  function updateJobListings() {
-    const recentJobListingsElement = document.getElementById("job-listings");
-  
-    // Clear the current job listings HTML
-    recentJobListingsElement.innerHTML = "";
-  
-    // Loop through the recent job listings and create HTML for each job posting
-    for (let i = 0; i < recentJobListings.length; i++) {
-      const jobPosting = recentJobListings[i];
-      const jobPostingHTML = `
-        <div class="job-posting">
-          <h3>${jobPosting.title}</h3>
-          <p><strong>Company:</strong> ${jobPosting.company}</p>
-          <p><strong>Location:</strong> ${jobPosting.location}</p>
-          <p><strong>Description:</strong> ${jobPosting.description}</p>
-          <button class="apply-now-button">Apply Now</button>
-        </div>
-      `;
-      recentJobListingsElement.innerHTML += jobPostingHTML;
+      jobListings.forEach((jobListing) => {
+        const jobListingHTML = `
+          <div class="job-listing">
+            <div class="job-title">${jobListing.title}</div>
+            <div class="job-company">${jobListing.company}</div>
+            <div class="job-location">${jobListing.location}</div>
+            <div class="job-description">${jobListing.description}</div>
+            <button class="apply-button">Apply Now</button>
+          </div>
+        `;
+        jobListingsContainer.innerHTML += jobListingHTML;
+      });
     }
   }
+  
+  // Load job listings on page load
+  window.addEventListener("load", loadJobListings);
   
   
   
