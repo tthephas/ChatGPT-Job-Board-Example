@@ -115,3 +115,50 @@ section ul li p {
     padding: 20px;
     text-align: center;
     }
+
+.job-posting-form {
+    border: 1px solid #ccc;
+    padding: 20px;
+    max-width: 600px;
+    margin: 0 auto;
+    }
+    
+    .job-posting-form h2 {
+    margin-top: 0;
+    }
+    
+    .job-posting-form label {
+    display: block;
+    margin-bottom: 5px;
+    }
+    
+    .job-posting-form input[type="text"],
+    .job-posting-form textarea {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    }
+    
+    .job-posting-form input[type="submit"] {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    }
+    .post-job-button {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    }
+      
