@@ -37,7 +37,9 @@ fetch("/jobs-data.json")
           <h3>${job.title}</h3>
           <p><strong>${job.company}</strong> - ${job.location}</p>
           <p>${job.description}</p>
-          <button class="apply-now">Apply Now</button>
+          <button class="apply-now" data-job-id="1">
+          <a href="applicationForm.html"></a>Apply Now
+          </button>
         `;
         jobListings.appendChild(li);
       });
@@ -82,30 +84,91 @@ jobPostForm.addEventListener("submit", (event) => {
 });
 
   // Load job listings from local storage
-function loadJobListings() {
-    let jobListings = localStorage.getItem("jobListings");
-    if (jobListings) {
-      jobListings = JSON.parse(jobListings);
-      const jobListingsContainer = document.getElementById("job-listings");
-      jobListingsContainer.innerHTML = "";
-  
-      jobListings.forEach((jobListing) => {
-        const jobListingHTML = `
-          <div class="job-listing">
-            <div class="job-title">${jobListing.title}</div>
-            <div class="job-company">${jobListing.company}</div>
-            <div class="job-location">${jobListing.location}</div>
-            <div class="job-description">${jobListing.description}</div>
-            <button class="apply-button">Apply Now</button>
-          </div>
-        `;
-        jobListingsContainer.innerHTML += jobListingHTML;
-      });
+  function renderJobs() {
+    let jobs = getJobsFromStorage();
+    let jobsContainer = document.getElementById("job-listings");
+    jobsContainer.innerHTML = "";
+    for (let i = 0; i < jobs.length; i++) {
+      let job = jobs[i];
+      let jobElement = `
+        <div class="job-card">
+          <div class="job-title">${job.title}</div>
+          <div class="job-company">${job.company}</div>
+          <div class="job-location">${job.location}</div>
+          <div class="job-description">${job.description}</div>
+          <button class="apply-now-btn">Apply Now</button>
+        </div>
+      `;
+      jobsContainer.innerHTML += jobElement;
     }
   }
+
+  function getJobsFromStorage() {
+    let jobs = localStorage.getItem("jobs");
+    if (jobs) {
+      return JSON.parse(jobs);
+    } else {
+      return [];
+    }
+  }
+  
+  
   
   // Load job listings on page load
   window.addEventListener("load", loadJobListings);
   
   
   
+  const applyButtons = document.querySelectorAll('.apply-now');
+
+  applyButtons.forEach(button => {
+    button.addEventListener('click', (e) => {
+      e.preventDefault();
+      const jobId = e.target.dataset.jobId;
+      const jobTitle = e.target.dataset.jobTitle;
+      const applyFormUrl = `applicationForm.html?id=${jobId}&title=${encodeURIComponent(jobTitle)}`;
+      window.location.href = applyFormUrl;
+    });
+  });
+  
+// Function to open the popup form
+function openApplicationForm(jobId) {
+  // Create a form element
+  const form = document.createElement("form");
+  
+  // Add form fields (e.g. name, email, resume upload)
+  // ...
+  
+  // Add a submit button
+  const submitButton = document.createElement("button");
+  submitButton.type = "submit";
+  submitButton.textContent = "Submit";
+  form.appendChild(submitButton);
+  
+  // Add an event listener to the form to handle submission
+  form.addEventListener("submit", event => {
+    event.preventDefault();
+    
+    // Send the form data to a server (e.g. using AJAX)
+    // ...
+    
+    // Close the popup form and show a success message
+    closeApplicationForm();
+    showSuccessMessage();
+  });
+  
+  // Add the form to the page (e.g. as a popup)
+  // ...
+}
+
+// Function to close the popup form
+function closeApplicationForm() {
+  // Remove the form element from the page
+  // ...
+}
+
+// Function to show a success message
+function showSuccessMessage() {
+  // Create a popup or alert to show the message
+  // ...
+}
